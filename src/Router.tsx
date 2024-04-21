@@ -1,10 +1,36 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { HomePage } from './pages/Home.page';
+import Shell from './components/Shell';
+import { RestaurantPage } from './pages/RestaurantPage';
+import { LoginForm } from './components/LoginForm';
+import { SignUpForm } from './components/SignUpForm';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
+    element: <Shell />,
+    children: [
+      {
+        path: '/',
+        element: <HomePage />,
+      },
+      {
+        path: '/restaurants',
+        element: <RestaurantPage />,
+      },
+      {
+        path: '/account',
+        element: <HomePage />,
+      },
+      {
+        path: '/login',
+        element: <LoginForm />,
+      },
+      {
+        path: '/signup',
+        element: <SignUpForm />,
+      },
+    ],
   },
 ]);
 
