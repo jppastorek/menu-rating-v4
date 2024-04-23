@@ -7,8 +7,6 @@ export function SearchBar(props: any) {
   const { search } = props;
   const [value, setValue] = useState('');
 
-  // console.log(props);
-
   return (
     <Group gap="xs">
       <TextInput

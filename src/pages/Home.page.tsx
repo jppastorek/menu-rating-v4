@@ -12,10 +12,6 @@ export function HomePage() {
   const [searchTerms, setSearchTerms] = useState('');
 
   const search = async (value: string) => {
-    // for some reason the proxy isnt working so i have to hard code the url
-    // const response = await fetch(`http://localhost:5000/api/search/item/${value}`);
-    // const data = await response.json();
-
     setSearchTerms(value);
   };
 
@@ -31,10 +27,6 @@ export function HomePage() {
     },
   });
 
-  // const { data, error, isError, isLoading } = useQuery('search', () => {
-  //   search();
-  //   console.log(data);
-  // });
 
   if (isLoggedIn) {
     if (error) {
