@@ -46,8 +46,12 @@ export default class User {
       FROM users
       WHERE email = '${email}'
     `);
-    console.log(result.user_id);
-    let authenticated = bcrypt.compareSync(password, result.password);
+    // console.log(result.user_id, password, result.password);
+    // let authenticated = bcrypt.compareSync(password, result.password);
+    // let authenticated = true;
+    // let authenticated;
+    // if (password == result.password) authenticated;
+
     if (authenticated) {
       let timeIn = new Date();
       let expiration = new Date();

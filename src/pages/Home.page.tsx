@@ -6,7 +6,7 @@ import { ItemDisplay } from '../components/ItemDisplay';
 import { SearchBar } from '../components/SearchBar';
 // import { query } from 'express';
 
-const isLoggedIn = true;
+const isLoggedIn = false;
 
 export function HomePage() {
   const [searchTerms, setSearchTerms] = useState('');
@@ -20,13 +20,12 @@ export function HomePage() {
     queryFn: () => {
       if (searchTerms) {
         return fetch(`http://localhost:5000/api/search/item/${searchTerms}`).then((res) =>
-          res.json(),
+          res.json()
         );
       }
       return [];
     },
   });
-
 
   if (isLoggedIn) {
     if (error) {
@@ -45,7 +44,7 @@ export function HomePage() {
   }
   return (
     <>
-      <Welcome />
+      {/* <Welcome /> */}
       <Group justify="center">
         <Box bg="none" my="xl" component="a" href="/login">
           <Button variant="outline" color="white" size="lg" radius="md">
