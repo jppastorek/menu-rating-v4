@@ -47,7 +47,7 @@ export function HomePage() {
       {/* <Welcome /> */}
       <Group justify="center">
         <Box bg="none" my="xl" component="a" href="/login">
-          <Button variant="outline" color="white" size="lg" radius="md">
+          <Button variant="outline" color="black" size="lg" radius="md">
             Log In
           </Button>
         </Box>

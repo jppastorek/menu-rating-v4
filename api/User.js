@@ -46,8 +46,8 @@ export default class User {
       FROM users
       WHERE email = '${email}'
     `);
-    // console.log(result.user_id, password, result.password);
-    // let authenticated = bcrypt.compareSync(password, result.password);
+    console.log(result.user_id, password, result.password);
+    let authenticated = bcrypt.compareSync(password, result.password);
     // let authenticated = true;
     // let authenticated;
     // if (password == result.password) authenticated;
@@ -63,7 +63,11 @@ export default class User {
     }
     await db.close();
     delete result.password;
-    if (authenticated) return { status: 'authenticated', user: result };
+    if (authenticated) {
+      return { status: 'authenticated', user: result }
+    } else {
+      return { status: 'invalid', user: result}
+    }
   }
 
   async updateUser(user_id, column, newData) {
