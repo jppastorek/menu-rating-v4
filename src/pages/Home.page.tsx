@@ -1,55 +1,53 @@
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import { useState } from 'react';
 import { Button, Group, Box } from '@mantine/core';
 import { Welcome } from '../components/Welcome/Welcome';
 import { ItemDisplay } from '../components/ItemDisplay';
 import { SearchBar } from '../components/SearchBar';
+// import { query } from 'express';
 
-const isLoggedIn = true;
+const isLoggedIn = false;
 
 export function HomePage() {
-  const [searchResults, setSearchResults] = useState({
-    searchTerm: '',
-    searchResults: [],
-  });
+  const [searchTerms, setSearchTerms] = useState('');
 
   const search = async (value: string) => {
-    // for some reason the proxy isnt working so i have to hard code the url
-    const response = await fetch(`http://localhost:5000/api/search/item/${value}`);
-    const data = await response.json();
-
-    setSearchResults({
-      ...searchResults,
-      searchResults: data,
-    });
+    setSearchTerms(value);
   };
 
-  // const { data, error, isError, isLoading } = useQuery('search', () => {
-  //   search();
-  //   console.log(data);
-  // });
+  const { isLoading, error, data } = useQuery({
+    queryKey: [searchTerms],
+    queryFn: () => {
+      if (searchTerms) {
+        return fetch(`http://localhost:5000/api/search/item/${searchTerms}`).then((res) =>
+          res.json()
+        );
+      }
+      return [];
+    },
+  });
 
   if (isLoggedIn) {
-    // if (isError) {
-    //   return <span>Error: {error.message}</span>;
-    // }
+    if (error) {
+      return <span>Error: {error.toString()}</span>;
+    }
 
-    // if (isLoading) {
-    //   return <span>Searching the database...</span>;
-    // }
+    if (isLoading) {
+      return <span>Loading please wait...</span>;
+    }
     return (
       <>
-        <SearchBar input={searchResults.searchTerm} search={search} />
-        <ItemDisplay items={searchResults.searchResults} />
+        <SearchBar input={searchTerms} search={search} />
+        <ItemDisplay items={data} />
       </>
     );
   }
   return (
     <>
-      <Welcome />
+      {/* <Welcome /> */}
       <Group justify="center">
         <Box bg="none" my="xl" component="a" href="/login">
-          <Button variant="outline" color="white" size="lg" radius="md">
+          <Button variant="outline" color="black" size="lg" radius="md">
             Log In
           </Button>
         </Box>
