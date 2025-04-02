@@ -3,7 +3,7 @@ import Ratings from './api/Rating.js';
 import Item from './api/Item.js';
 import express from 'express';
 import cors from 'cors';
-const port = process.env.port || 5000;
+const port = process.env.port || 5001;
 const db = './restaurant.db';
 // const db = "C:/Users/jp/WebDev/menu-rating/restaurant.db";
 // const db = process.env.DATABASE_PATH || "C:/Users/jp/WebDev/menu-rating/restaurant.db";

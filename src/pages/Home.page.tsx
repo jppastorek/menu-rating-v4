@@ -5,7 +5,7 @@ import { Welcome } from '../components/Welcome/Welcome';
 import { ItemDisplay } from '../components/ItemDisplay';
 import { SearchBar } from '../components/SearchBar';
 
-const isLoggedIn = true;
+const isLoggedIn = false;
 
 export function HomePage() {
   const [searchResults, setSearchResults] = useState({
@@ -15,7 +15,7 @@ export function HomePage() {
 
   const search = async (value: string) => {
     // for some reason the proxy isnt working so i have to hard code the url
-    const response = await fetch(`http://localhost:5000/api/search/item/${value}`);
+    const response = await fetch(`http://localhost:5001/api/search/item/${value}`);
     const data = await response.json();
 
     setSearchResults({

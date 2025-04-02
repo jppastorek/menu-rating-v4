@@ -1,7 +1,7 @@
 import { TextInput, Checkbox, Button, Group, Box } from '@mantine/core';
 import { useForm } from '@mantine/form';
 
-export function SignUpForm() {
+export async function SignUpForm() {
   const form = useForm({
     initialValues: {
       email: '',
@@ -11,6 +11,11 @@ export function SignUpForm() {
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
     },
+  });
+
+  const response = await fetch("localhost:5173/api/user", {
+    method: "POST",
+    body: ""
   });
 
   return (
