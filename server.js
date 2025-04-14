@@ -30,7 +30,7 @@ app.get('/api/user/:id', async (req, res) => {
 });
 
 //POST NEW USER
-app.post('/api/user', jsonParser, async (req, res) => {
+app.post('/api/user/register', jsonParser, async (req, res) => {
   console.log(`Adding ${req.body.first_name}`);
 
   let id = await userController.addNewUser(
