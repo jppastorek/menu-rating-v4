@@ -31,7 +31,7 @@ export function SignUpForm() {
           last_name: values.last,
           email: values.email,
           password: values.password,
-          location: values.residence,
+          residence: values.location,
         }),
       });
 
